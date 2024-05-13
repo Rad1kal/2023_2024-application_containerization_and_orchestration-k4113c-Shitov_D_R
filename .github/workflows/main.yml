@@ -28,13 +28,13 @@ jobs:
       run: docker build -t my-python-app .
 
     - name: Log in to Docker Hub
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      run: docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
 
     - name: Tag Docker image
-      run: docker tag my-python-app "${{ secrets.DOCKER_USERNAME }}/my-python-app:latest"
+      run: docker tag my-python-app "dmitryshitov/my-python-app:latest"
 
     - name: Push Docker image to Docker Hub
-      run: docker push "${{ secrets.DOCKER_USERNAME }}/my-python-app:latest"
+      run: docker push "dmitryshitov/my-python-app:latest"
 
     - name: Send email notification
       uses: dawidd6/action-send-mail@v2
@@ -45,5 +45,6 @@ jobs:
         password: ${{ secrets.EMAIL_PASSWORD }}
         subject: 'GitHub Actions Pipeline Finished'
         to: 'shitovdmt@yandex.ru'
+        from: 'dekaimr@gmail.com'
         body: 'Your GitHub Actions pipeline has finished successfully.'
 
