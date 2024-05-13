@@ -45,5 +45,6 @@ jobs:
         password: ${{ secrets.EMAIL_PASSWORD }}
         subject: 'GitHub Actions Pipeline Finished'
         to: 'shitovdmt@yandex.ru'
+        from: 'dekaimr@gmail.com'
         body: 'Your GitHub Actions pipeline has finished successfully.'
 
